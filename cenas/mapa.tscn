@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3drhmxxf8kgs"]
+
+[ext_resource type="Texture2D" uid="uid://s2b1cpyb7ce1" path="res://imagens/Captura de tela 2025-02-04 205633.png" id="1_ma5yy"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_src8j"]
+load_path = "res://.godot/imported/sala.jpg-9278906cb357acaf5ca495c00dd07c17.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r1ewr"]
+load_path = "res://.godot/imported/salacorredor.jpg-d166286fbb5a70be77b559ec441a6b5d.ctex"
+
+[node name="mapa" type="Node2D"]
+
+[node name="mapa" type="Sprite2D" parent="."]
+position = Vector2(577.75, 326.5)
+scale = Vector2(1.58049, 1.58413)
+texture = ExtResource("1_ma5yy")
+
+[node name="Sala" type="Sprite2D" parent="."]
+position = Vector2(-613, -399)
+texture = SubResource("CompressedTexture2D_src8j")
+
+[node name="Salacorredor" type="Sprite2D" parent="."]
+position = Vector2(-804, -104)
+texture = SubResource("CompressedTexture2D_r1ewr")

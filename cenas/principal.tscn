@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://qe2jfsp5b2fr"]
+
+[ext_resource type="PackedScene" uid="uid://c3drhmxxf8kgs" path="res://cenas/mapa.tscn" id="1_lbwin"]
+[ext_resource type="PackedScene" uid="uid://b6pvycopfeg15" path="res://cenas/barreira.tscn" id="2_5qk1v"]
+[ext_resource type="PackedScene" uid="uid://bpw4bjr2j3m7d" path="res://cenas/jogador.tscn" id="3_b5ds1"]
+
+[node name="principal" type="Node2D"]
+
+[node name="mapa" parent="." instance=ExtResource("1_lbwin")]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="barreira" parent="Node2D" instance=ExtResource("2_5qk1v")]
+
+[node name="jogador" parent="." instance=ExtResource("3_b5ds1")]
+position = Vector2(270, 256)
+scale = Vector2(2, 2)
