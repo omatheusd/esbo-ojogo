@@ -1,17 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://qe2jfsp5b2fr"]
+[gd_scene load_steps=4 format=3 uid="uid://ddvxfk4vjs0am"]
 
-[ext_resource type="PackedScene" uid="uid://c3drhmxxf8kgs" path="res://cenas/mapa.tscn" id="1_lbwin"]
-[ext_resource type="PackedScene" uid="uid://b6pvycopfeg15" path="res://cenas/barreira.tscn" id="2_5qk1v"]
-[ext_resource type="PackedScene" uid="uid://bpw4bjr2j3m7d" path="res://cenas/jogador.tscn" id="3_b5ds1"]
+[ext_resource type="PackedScene" uid="uid://ca5pmk81oc2fh" path="res://cenas/player.tscn" id="1_ler2o"]
+[ext_resource type="PackedScene" uid="uid://ukuyq3b1dp" path="res://cenas/barrreiras.tscn" id="2_62jv2"]
+[ext_resource type="Texture2D" uid="uid://xa1ekgsku6dp" path="res://Sprite Pack 2/Sprite Pack 2/4 - Winter World/Background parts/_Complete_static_BG_(288 x 208).png" id="3_cgbjr"]
 
-[node name="principal" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 
-[node name="mapa" parent="." instance=ExtResource("1_lbwin")]
+[node name="CompleteStaticBg(288X208)" type="Sprite2D" parent="."]
+position = Vector2(575, 316)
+scale = Vector2(4.02083, 3.10096)
+texture = ExtResource("3_cgbjr")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="player" parent="." instance=ExtResource("1_ler2o")]
+position = Vector2(350, 283)
 
-[node name="barreira" parent="Node2D" instance=ExtResource("2_5qk1v")]
-
-[node name="jogador" parent="." instance=ExtResource("3_b5ds1")]
-position = Vector2(270, 256)
-scale = Vector2(2, 2)
+[node name="barrreiras" parent="." instance=ExtResource("2_62jv2")]
+position = Vector2(2, 643)
