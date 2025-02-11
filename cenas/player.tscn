@@ -79,6 +79,7 @@ animations = [{
 
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(3, 3)
+collision_mask = 9
 script = ExtResource("1_6sg10")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -89,11 +90,19 @@ shape = SubResource("RectangleShape2D_bkpxu")
 position = Vector2(0.333333, 0)
 scale = Vector2(0.466146, 0.484375)
 sprite_frames = SubResource("SpriteFrames_fh6pd")
-animation = &"parado"
+animation = &"correr"
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(0, 2)
-zoom = Vector2(1.7, 1.7)
+zoom = Vector2(2.3, 2.3)
 limit_left = 0
 limit_bottom = 20500000
 limit_smoothed = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4.76837e-07, 1.66667)
+shape = SubResource("RectangleShape2D_bkpxu")
+
+[connection signal="area_entered" from="Area2D" to="." method="adicionamoeda"]

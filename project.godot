@@ -15,12 +15,6 @@ run/main_scene="res://cenas/principal.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-[file_customization]
-
-folder_colors={
-"res://Sprite Pack 2/Sprite Pack 2/": "red"
-}
-
 [input]
 
 space={

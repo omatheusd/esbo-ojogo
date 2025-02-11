@@ -1,7 +1,6 @@
-extends Node2D
+extends Area2D
 
 
-var dinheiro: int=0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,7 +11,12 @@ func _process(delta: float) -> void:
 	pass
 
 
+func _on_body_entered(body: Node2D) -> void:
+	$AnimatedSprite2D.play("coletando_1")
 
-func adddinheiro() -> void:
-	dinheiro = dinheiro + 1
-	print(dinheiro)
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+
+	queue_free()
+	
+	

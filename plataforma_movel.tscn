@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://boajwfn17xopi"]
+
+[ext_resource type="Texture2D" uid="uid://c3wa6m2ak3gp2" path="res://Sprite Pack 2/Sprite Pack 2/4 - Winter World/Blocks (16 x 16).png" id="1_6m8ud"]
+[ext_resource type="Script" path="res://scipts/plataforma_movel.gd" id="1_e2qrw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hiat"]
+size = Vector2(32, 15.5)
+
+[node name="plataforma_movel" type="Node2D"]
+script = ExtResource("1_e2qrw")
+
+[node name="plataforma" type="AnimatableBody2D" parent="."]
+
+[node name="plataforma" type="Sprite2D" parent="plataforma"]
+position = Vector2(21, 19)
+texture = ExtResource("1_6m8ud")
+region_enabled = true
+region_rect = Rect2(96, 64, 32, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataforma"]
+position = Vector2(21, 19.25)
+shape = SubResource("RectangleShape2D_4hiat")
