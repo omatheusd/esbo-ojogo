@@ -1,53 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://wqsegkgkq0kn"]
+[gd_scene load_steps=14 format=3 uid="uid://wqsegkgkq0kn"]
 
 [ext_resource type="Script" path="res://scripts/inimigo.gd" id="1_ajxra"]
 [ext_resource type="Texture2D" uid="uid://b1le2fcfp5rac" path="res://Sprite Pack 2/Sprite Pack 2/4 - Robo Pumpkin/Walking (16 x 16).png" id="1_wa7ao"]
 [ext_resource type="Texture2D" uid="uid://d21fxtm2d156j" path="res://Sprite Pack 2/Sprite Pack 2/4 - Robo Pumpkin/Hurt (16 x 16).png" id="3_nqs6w"]
 [ext_resource type="Texture2D" uid="uid://yvgo8322e3u3" path="res://Sprite Pack 2/Sprite Pack 2/4 - Robo Pumpkin/Standing (16 x 16).png" id="4_ef3vl"]
+[ext_resource type="PackedScene" uid="uid://hrp4l012qn4b" path="res://cenas/hitbox.tscn" id="5_iqljx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ltiwb"]
-radius = 6.08276
-
-[sub_resource type="Animation" id="Animation_wehwq"]
-resource_name = "walk"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("textura:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_wa7ao")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("textura:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("textura:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
+[sub_resource type="CircleShape2D" id="CircleShape2D_qolms"]
+radius = 6.66667
 
 [sub_resource type="Animation" id="Animation_i2jf0"]
 length = 0.001
@@ -129,9 +89,6 @@ tracks/2/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_2fy0p"]
-resource_name = "standing"
-
 [sub_resource type="Animation" id="Animation_kri50"]
 resource_name = "parado"
 length = 0.1
@@ -173,6 +130,50 @@ tracks/2/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_2fy0p"]
+resource_name = "standing"
+
+[sub_resource type="Animation" id="Animation_wehwq"]
+resource_name = "walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("textura:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_wa7ao")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("textura:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("textura:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_muwku"]
 _data = {
 "RESET": SubResource("Animation_i2jf0"),
@@ -182,21 +183,24 @@ _data = {
 "walk": SubResource("Animation_wehwq")
 }
 
-[node name="inimigo" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj86n"]
+size = Vector2(10.6667, 2.66667)
+
+[node name="inimigo" type="CharacterBody2D" groups=["inimigos"]]
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
-collision_mask = 2
+collision_mask = 7
 script = ExtResource("1_ajxra")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-1.0066e-14, -6)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_qolms")
 
 [node name="textura" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = ExtResource("1_wa7ao")
 hframes = 2
-
-[node name="Collision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_ltiwb")
 
 [node name="Anima" type="AnimationPlayer" parent="."]
 libraries = {
@@ -209,3 +213,12 @@ speed_scale = 0.5
 position = Vector2(0, -6)
 target_position = Vector2(-7, 0)
 collision_mask = 6
+
+[node name="hitbox" parent="." instance=ExtResource("5_iqljx")]
+position = Vector2(0, -1.33333)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_nj86n")
+
+[connection signal="animation_finished" from="Anima" to="." method="_on_anima_animation_finished"]

@@ -4,6 +4,7 @@ extends Control
 @onready var timer_counter = $Container/timer_Container3/timer_contador as Label
 @onready var score_counter = $Container/score_Container2/contador_score as Label
 @onready var clock: Timer = $"../../hud/Control/clock"
+@onready var life_contador: Label = $Container/life_Container4/life_contador
 
 var segundos = 0
 var minutos = 0
@@ -15,10 +16,12 @@ func _ready() -> void:
 	coins_counter.text = str("%04d" % Hud.coins)
 	score_counter.text = str("%06d" % Hud.score)
 	timer_counter.text = str("%02d" % default_minutos) + ":" + str("%02d" % default_segundos)
+	life_contador.text = str("%02d" % Hud.life)
 	reset_clock_timer()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	coins_counter.text = str("%04d" % Hud.coins)
+	score_counter.text = str("%06d" % Hud.score)
 	if minutos == 0 and segundos == 0:
 		emit_signal("time_is_up")
 func _on_clock_timeout() -> void:

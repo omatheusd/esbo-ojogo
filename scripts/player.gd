@@ -5,6 +5,8 @@ const speed = 100.0
 const forca_pulo = -400.0
 var is_jumping := false
 @onready var animaçao := $AnimatedSprite2D as AnimatedSprite2D
+@onready var remote_transform := $Remote as RemoteTransform2D
+signal morreu
 func _physics_process(delta: float) -> void:   
 	# Add the gravity.
 	if not is_on_floor():
@@ -35,3 +37,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		animaçao.play("parado")
 	move_and_slide()
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("inimigos"):
+		#queue_free()
+		emit_signal("morreu")
+		#morreu.connect(reload_game)

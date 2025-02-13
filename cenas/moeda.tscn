@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://llcxoc4261bk"]
+[gd_scene load_steps=12 format=3 uid="uid://llcxoc4261bk"]
 
 [ext_resource type="Texture2D" uid="uid://bk35m5keecmlb" path="res://Sprite Pack 2/Sprite Pack 2/4 - Winter World/Coin (16 x 16).png" id="1_s0yud"]
 [ext_resource type="Script" path="res://scripts/moeda.gd" id="1_sjj2a"]
@@ -15,9 +15,6 @@ region = Rect2(20, 0, 20, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_50lll"]
 atlas = ExtResource("2_m386j")
 region = Rect2(40, 0, 20, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6gtg3"]
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdhbl"]
 atlas = ExtResource("1_s0yud")
@@ -49,9 +46,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6gtg3")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_rdhbl")
 }, {
 "duration": 1.0,
@@ -77,6 +71,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_wuth1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

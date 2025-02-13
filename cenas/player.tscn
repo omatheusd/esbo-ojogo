@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ca5pmk81oc2fh"]
+[gd_scene load_steps=15 format=3 uid="uid://ca5pmk81oc2fh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6sg10"]
 [ext_resource type="Texture2D" uid="uid://q4i2bprwjj1x" path="res://Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Idle (32 x 32).png" id="1_k8st5"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dusdjeysfcxoh" path="res://Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Jumping (32 x 32).png" id="3_4c23q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkpxu"]
-size = Vector2(11.3333, 11)
+size = Vector2(6.33333, 7.33333)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtvma"]
 atlas = ExtResource("1_n12h0")
@@ -77,13 +77,25 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vved"]
+size = Vector2(8.33333, 5.33333)
+
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(3, 3)
-collision_mask = 9
+collision_mask = 6
 script = ExtResource("1_6sg10")
 
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(0, 2)
+zoom = Vector2(2.3, 2.3)
+limit_left = 0
+limit_bottom = 20500000
+limit_smoothed = true
+editor_draw_screen = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.76837e-07, 1.66667)
+visible = false
+position = Vector2(0.333333, 3.33333)
 shape = SubResource("RectangleShape2D_bkpxu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -92,17 +104,22 @@ scale = Vector2(0.466146, 0.484375)
 sprite_frames = SubResource("SpriteFrames_fh6pd")
 animation = &"correr"
 
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2(0, 2)
-zoom = Vector2(2.3, 2.3)
-limit_left = 0
-limit_bottom = 20500000
-limit_smoothed = true
-
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(4.76837e-07, 1.66667)
+position = Vector2(0.5, 3.33333)
 shape = SubResource("RectangleShape2D_bkpxu")
 
+[node name="hurtbox" type="Area2D" parent="."]
+visible = false
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+visible = false
+position = Vector2(0.5, 2)
+shape = SubResource("RectangleShape2D_4vved")
+debug_color = Color(0.962852, 0, 0.502163, 0.42)
+
 [connection signal="area_entered" from="Area2D" to="." method="adicionamoeda"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
